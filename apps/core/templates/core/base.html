@@ -1,0 +1,285 @@
+{% load static %}
+
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <title>{% block title %}{% endblock %}LinuxShop</title>
+
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css">
+        <link rel="stylesheet" href="{% static 'styles/main.css' %}">
+
+        <script src="{% static 'scripts/main.js' %}"></script>
+        <link rel="icon" type="image/png" href="{% static 'images/favicon.png' %}">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <link rel="icon" type="image/png" href="{% static 'images/favicon.png' %}">
+        <!-- Web Font -->
+        <link href="https://fonts.googleapis.com/css?family=Poppins:200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i&display=swap" rel="stylesheet">
+        <!-- StyleSheet -->
+    
+        <!-- Bootstrap -->
+        <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+        <!-- Magnific Popup -->
+        <link rel="stylesheet" href="{% static 'css/magnific-popup.min.css' %}">
+        <!-- Font Awesome -->
+        <link rel="stylesheet" href="{% static 'css/font-awesome.css' %}">
+
+        <link rel="stylesheet" href="{% static 'css/jquery.fancybox.min.cs' %}s">
+        <!-- Themify Icons -->
+        <link rel="stylesheet" href="{% static 'css/themify-icons.css' %}">
+        <!-- Nice Select CSS -->
+        <link rel="stylesheet" href="{% static 'css/niceselect.css' %}">
+        <!-- Animate CSS -->
+        <link rel="stylesheet" href="{% static 'css/animate.css' %}">
+        <!-- Flex Slider CSS -->
+        <link rel="stylesheet" href="{% static 'css/flex-slider.min.css' %}">
+        <!-- Owl Carousel -->
+        <link rel="stylesheet" href="{% static 'css/owl-carousel.css' %}">
+        <!-- Slicknav -->
+        <link rel="stylesheet" href="{% static 'css/slicknav.min.css' %}">
+        
+        <!-- Eshop StyleSheet -->
+        <link rel="stylesheet" href="{% static 'css/reset.css' %}">
+        <link rel="stylesheet" href="{% static 'style.css' %}">
+        <link rel="stylesheet" href="{% static 'css/responsive.css' %}">
+        <!-- Eshop StyleSheet -->
+        <link rel="stylesheet" href="{% static 'css/reset.css' %}">
+        <link rel="stylesheet" href="{% static 'style.css' %}">
+        <link rel="stylesheet" href="{% static 'css/responsive.css' %}">
+
+
+
+    </head>
+</body>
+<!-- Header -->
+    <header class="header shop">
+        <!-- Topbar -->
+        <div class="topbar">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-4 col-md-12 col-12">
+                        <!-- Top Left -->
+                        <div class="top-left">
+                            <ul class="list-main">
+                                <li><i class="ti-headphone-alt"></i> +233-572-8007</li>
+                                <li><i class="ti-email"></i><gmail class="com">yeboahd24@gmail.com</gmail></li>
+                            </ul>
+                        </div>
+                        <!--/ End Top Left -->
+                    </div>
+                    <div class="col-lg-8 col-md-12 col-12">
+                        <!-- Top Right -->
+                        <div class="right-content">
+                            <ul class="list-main">
+                                
+                                <li><i class="ti-user"></i><a href="{% url 'become_vendor' %}">Become vendor</a></li>
+
+                                <li><i class="ti-power-off"></i><a href="{% url 'login' %}">Login</a></li>
+                            </ul>
+                        </div>
+                        <!-- End Top Right -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>       <!-- End Topbar --> 
+
+
+        <nav class="navbar is-dark">
+            <div class="navbar-brand">
+                <a href="/" class="navbar-item"><strong>Interiorshop</strong></a>
+        
+                <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="main-navbar">
+                    <span aria-hidden="true"></span>
+                    <span aria-hidden="true"></span>
+                    <span aria-hidden="true"></span>
+                </a>
+            </div>
+        
+            <div class="navbar-menu" id="main-navbar">
+                <div class="navbar-start">
+                    <div class="navbar-item">
+                        <form method="get" action="{% url 'search' %}">
+                            <div class="field has-addons">
+                                <div class="control">
+                                    <input type="text" class="input" placeholder="Search..." name="query">
+                                </div>
+                                <div class="control">
+                                    <button class="button is-dark is-uppercase">Search</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+                <div class="navbar-end">
+                    {% for category in menu_categories %}
+                        <a href="{% url 'category' category.slug %}" class="navbar-item">{{ category.title }}</a>
+                    {% endfor %}
+
+                    <a href="{% url 'contact' %}" class="navbar-item">Contact</a>
+
+                    <div class="navbar-item">
+                        <a href="{% url 'cart' %}" class="button is-dark">Cart{% if cart %} ({{ cart|length }}){% endif %}</a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+        <section class="section">
+            <div class="container">
+                {% block content %}
+                {% endblock %}
+            </div>
+        </section>
+        
+ <!-- Start Footer Area -->
+        <footer class="footer">
+            <!-- Footer Top -->
+            <div class="footer-top section">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-5 col-md-6 col-12">
+                            <!-- Single Widget -->
+                            <div class="single-footer about">
+                                <div class="logo">
+                                    <a href="{% url 'frontpage' %}"><img src="{% static 'images/logo.png' %}" alt="#"></a>
+                                </div>
+                                <p class="text">Praesent dapibus, neque id cursus ucibus, tortor neque egestas augue,  magna eros eu erat. Aliquam erat volutpat. Nam dui mi, tincidunt quis, accumsan porttitor, facilisis luctus, metus.</p>
+                                <p class="call">Got Question? Call us 24/7<span><a href="tel:123456789">+0123 456 789</a></span></p>
+                            </div>
+                            <!-- End Single Widget -->
+                        </div>
+                        <div class="col-lg-2 col-md-6 col-12">
+                            <!-- Single Widget -->
+                            <div class="single-footer links">
+                                <h4>Information</h4>
+                                <ul>
+                                    <li><a href="#">About Us</a></li>
+                                    <li><a href="#">Faq</a></li>
+                                    <li><a href="#">Terms & Conditions</a></li>
+                                    <li><a href="#">Contact Us</a></li>
+                                    <li><a href="#">Help</a></li>
+                                </ul>
+                            </div>
+                            <!-- End Single Widget -->
+                        </div>
+                        <div class="col-lg-2 col-md-6 col-12">
+                            <!-- Single Widget -->
+                            <div class="single-footer links">
+                                <h4>Customer Service</h4>
+                                <ul>
+                                    <li><a href="#">Payment Methods</a></li>
+                                    <li><a href="#">Money-back</a></li>
+                                    <li><a href="#">Returns</a></li>
+                                    <li><a href="#">Shipping</a></li>
+                                    <li><a href="#">Privacy Policy</a></li>
+                                </ul>
+                            </div>
+                            <!-- End Single Widget -->
+                        </div>
+                        <div class="col-lg-3 col-md-6 col-12">
+                            <!-- Single Widget -->
+                            <div class="single-footer social">
+                                <h4>Get In Tuch</h4>
+                                <!-- Single Widget -->
+                                <div class="contact">
+                                    <ul>
+                                        <li>NO. 342 - London Oxford Street.</li>
+                                        <li>012 United Kingdom.</li>
+                                        <li>info@eshop.com</li>
+                                        <li>+032 3456 7890</li>
+                                    </ul>
+                                </div>
+                                <!-- End Single Widget -->
+                                <ul>
+                                    <li><a href="#"><i class="ti-facebook"></i></a></li>
+                                    <li><a href="#"><i class="ti-twitter"></i></a></li>
+                                    <li><a href="#"><i class="ti-flickr"></i></a></li>
+                                    <li><a href="#"><i class="ti-instagram"></i></a></li>
+                                </ul>
+                            </div>
+                            <!-- End Single Widget -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- End Footer Top -->
+            <div class="copyright">
+                <div class="container">
+                    <div class="inner">
+                        <div class="row">
+                            <div class="col-lg-6 col-12">
+                                <div class="left">
+                                    <p>Copyright © 2020 <a href="http://www.wpthemesgrid.com" target="_blank">Wpthemesgrid</a>  -  All Rights Reserved.</p>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-12">
+                                <div class="right">
+                                    <img src="{% static 'images/payments.png' %}" alt="#">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--  {% if request.user.is_authenticated %}
+            <a href="{% url 'vendor_admin' %}">Vendor admin</a>
+            {% else %}
+            <a href="{% url 'become_vendor' %}">Become vendor</a>
+            {% endif %}
+             <h3 class="is-size-4 mb-4">Interiorshop</h3>
+            <a href="{% url 'vendors' %}">Vendors</a>
+ -->
+
+        </footer>
+        <!-- /End Footer Area -->
+    
+
+    {% block scripts %}
+      <!-- Jquery -->
+    <script src="{% static 'js/jquery.min.js' %}"></script>
+    <script src="{% static 'js/jquery-migrate-3.0.0.js' %}"></script>
+    <script src="{% static 'js/jquery-ui.min.js' %}"></script>
+    <!-- Popper JS -->
+    <script src="{% static 'js/popper.min.js' %}"></script>
+    <!-- Bootstra{% static 'p JS -->
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    <!-- Color JS{% static ' -->
+    <script src="{% static 'js/colors.js' %}"></script>
+    <!-- Slicknav{% static ' JS -->
+    <script src="{% static 'js/slicknav.min.js' %}"></script>
+    <!-- Owl Caro{% static 'usel JS -->
+    <script src="{% static 'js/owl-carousel.js' %}"></script>
+    <!-- Magnific{% static ' Popup JS -->
+    <script src="{% static 'js/magnific-popup.js' %}"></script>
+    <!-- Fancybox{% static ' JS -->
+    <script src="{% static 'js/facnybox.min.js' %}"></script>
+    <!-- Waypoint{% static 's JS -->
+    <script src="{% static 'js/waypoints.min.js' %}"></script>
+    <!-- Countdow{% static 'n JS -->
+    <script src="{% static 'js/finalcountdown.min.js' %}"></script>
+    <!-- Nice Sel{% static 'ect JS -->
+    <script src="{% static 'js/nicesellect.js' %}"></script>
+    <!-- Ytplayer{% static ' JS -->
+    <script src="{% static 'js/ytplayer.min.js' %}"></script>
+    <!-- Flex Sli{% static 'der JS -->
+    <script src="{% static 'js/flex-slider.js' %}"></script>
+    <!-- ScrollUp{% static ' JS -->
+    <script src="{% static 'js/scrollup.js' %}"></script>
+    <!-- Onepage {% static 'Nav JS -->
+    <script src="{% static 'js/onepage-nav.min.js' %}"></script>
+    <!-- Easing J{% static 'S -->
+    <script src="{% static 'js/easing.js' %}"></script>
+    <!-- Active J{% static 'S -->
+    <script src="{% static 'js/active.js' %}"></script>
+    </body>
+    {% endblock %}
+</body>
+</html>
+
+       
