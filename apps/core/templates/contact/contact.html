@@ -1,0 +1,26 @@
+{% extends 'contact/base.html' %}
+{% load material_form %}
+
+
+{% block title %}
+    Contact Form
+{% endblock title %}
+
+{% block content %}
+<form method="POST" enctype="multipart/form-data">
+    <div class="container">
+    <span class="card-title grey-text text-darken-2" style="font-size:40px"><b>Contact Form</b></span>
+    {% for message in messages %} {% if 'info' in message.tags %}{% endif %}
+        <div class="card-panel green lighten-2">{{message}}</div>
+        {% endfor %}
+    {% csrf_token %}    
+    {% form %}
+
+        {% part form.email prefix %}<i class="material-icons prefix">email</i>{% endpart %}
+
+    {% endform %}
+    <button type="submit" class="btn">Submit</button>
+    </div>
+</form>
+
+{% endblock content %}  

@@ -99,7 +99,7 @@ upstream interiorshop_app_server {
 
 server {
     listen 80;
-    server_name interiorshop.codewithstein.com;
+    server_name interiorshop.codewithdominic.com;
     return 301 https://interiorshop.codewithstein.com$request_uri;
 }
 

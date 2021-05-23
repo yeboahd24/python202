@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 
 from pathlib import Path
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -35,12 +36,19 @@ LOGOUT_REDIRECT_URL = 'frontpage'
 SESSION_COOKIE_AGE = 86400
 CART_SESSION_ID = 'cart'
 
-EMAIL_HOST = 'smtp.sendgrid.net'
-EMAIL_HOST_USER = 'apikey'
-EMAIL_HOST_PASSWORD = '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'
-EMAIL_PORT = 587
-EMAIL_USE_TLS = True
-DEFAULT_EMAIL_FROM = 'Interiorstore <noreply@codewithstein.com>'
+# Email Configuration
+
+# EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+# EMAIL_HOST_USER = 'yeboahd24@gmail.com'
+# EMAIL_HOST_PASSWORD = 'maryyeboah70'
+# EMAIL_PORT = 587
+# EMAIL_USE_TLS = True
+# DEFAULT_EMAIL_FROM = 'Interiorstore <noreply@codewithdominic.com>'
+
+EMAIL_HOST = 'smtp.mailtrap.io'
+EMAIL_HOST_USER = 'b66c13b8340f57'
+EMAIL_HOST_PASSWORD = 'd88a0bc8b4f9d2'
+EMAIL_PORT = '2525'
 
 # Application definition
 
@@ -51,11 +59,17 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    # local apps
     'apps.cart',
     'apps.core',
     'apps.order',
     'apps.product',
-    'apps.vendor'
+    'apps.vendor',
+
+    # external 
+    'material',
+    'material.frontend',
 ]
 
 MIDDLEWARE = [
@@ -73,7 +87,7 @@ ROOT_URLCONF = 'interiorshop.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
