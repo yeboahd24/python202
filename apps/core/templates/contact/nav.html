@@ -1,0 +1,25 @@
+
+<nav class="navbar is-dark">
+            <div class="navbar-brand">
+                <a href="/" class="navbar-item"><strong>Interiorshop</strong></a>
+        
+                <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="main-navbar">
+                    <span aria-hidden="true"></span>
+                    <span aria-hidden="true"></span>
+                    <span aria-hidden="true"></span>
+                </a>
+            </div>
+        
+            <div class="navbar-menu" id="main-navbar">
+             
+
+                <div class="navbar-end">
+
+                    <a href="{% url 'contact' %}" class="navbar-item">Contact</a>
+
+                    <div class="navbar-item">
+                        <a href="{% url 'cart' %}" class="button is-dark">Cart{% if cart %} ({{ cart|length }}){% endif %}</a>
+                    </div>
+                </div>
+            </div>
+        </nav>
